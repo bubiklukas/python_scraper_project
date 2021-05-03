@@ -15,7 +15,7 @@ def get_news():
     return list
 
 get_news()
-
+#github_edit
 print(random.sample(list, 4))
 
 driver.quit()
