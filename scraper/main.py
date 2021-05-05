@@ -11,22 +11,37 @@ class scraper_bot(object):
         self.options.add_argument('headless')
         self.options.add_argument('window-size=1920x1080')
         self.options.add_argument("disable-gpu")
-        self.driver = webdriver.Chrome(self.path, options=self.options)
         self.url = "https://www.idnes.cz/"
-        self.driver.get(self.url)
         #lists
+        self.sample_h3 = []
+        self.sample_href = []
         self.h3_list = []
+        self.href_list = []
+    def run(self):
+        print('run')
+        self.driver = webdriver.Chrome(self.path, options=self.options)
+        self.driver.get(self.url)
     def get_news(self):
-        raw_h3 = self.driver.find_elements_by_xpath('//a/h3')
+        print('get_news')
+        raw_h3 = self.driver.find_elements_by_xpath('//a[@class="art-link"]/h3')
+        raw_href = self.driver.find_elements_by_class_name('art-link')
         for elem in raw_h3:
             self.h3_list.append(elem.text)
-        return self.h3_list
+        for elem in raw_href:
+            href = elem.get_attribute("href")
+            self.href_list.append(href)
+        return self.h3_list, self.href_list
     def sample(self, num):
-        return random.sample(self.h3_list, num)
+        print('sample')
+        for i in range(num):
+            random_number = random.randrange(1, int((len(self.h3_list)/4)))
+            self.sample_h3.append(self.h3_list[random_number])
+            self.sample_href.append(self.href_list[random_number])
+            self.h3_list.pop(random_number)
+            self.href_list.pop(random_number)
+            print(random_number)
+        return self.sample_h3, self.sample_href
     def stop(self):
+        print('stop')
         self.driver.quit()
-bot = scraper_bot()
 
-bot.get_news()
-print(bot.sample(4))
-bot.stop()
