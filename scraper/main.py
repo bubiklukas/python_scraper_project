@@ -1,5 +1,7 @@
-from selenium import webdriver
 import random
+from selenium import webdriver
+
+
 
 class scraper_bot(object):
     def __init__(self):

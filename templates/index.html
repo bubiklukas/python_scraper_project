@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/static/js/main.js"></script>-->
-    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <title>Idnes News Scraper | By Lukas Bubik</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/custom.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Some news from idnes.cz:</h1>
+    <div class="text-white bg-dark">
+        <div class="container">
+            <h1>News Web Scraper</h1>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2>Some news from idnes.cz:</h2>
         <hr>
         {% for title in titles %}
         <h3><a href="{{links[loop.index - 1]}}" target="_blank">{{title}}</a></h3>
         {% endfor %}
-        <hr>
-        <form action="/botrun/" method="POST">
-            <button id="refresh-btn"class="btn btn-default" type="submit">Refresh news</button>
-        </form>
-        <p id="loading" style="display: {{loading}};" class="bg-warning">Scraping some news, do not click the button again.</p>
-        
+        <div class="flex1">
+            <form action="/botrun/" method="POST">
+                <button onclick="showLoading()"id="show" class="btn btn-success" type="submit">Get news</button>
+            </form>
+            <form action="/">
+                <button onclick="hideLoading()"class="btn btn-danger" id="hide">Delete news</button>
+            </form>
+        </div>
+        <p id="loading" class="bg-warning">Loading news, do not click the button again.</p>
+        <footer class="fixed-bottom text-center p20 text-white bg-dark">Made by Lukas Bubik</footer>
     </div>
 </body>
 </html>
