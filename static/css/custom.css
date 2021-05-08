@@ -1,11 +1,15 @@
 body{
     background-color: white;
 }
-p.bg-warning {
+p#loading {
     display: none;
     margin-top: 15px;
     padding: 10px;
     border-radius: 5px;
+}
+h3 {
+    margin-top: 20px;
+    font-size: 20px;
 }
 .flex1{
     display: flex;
@@ -14,8 +18,10 @@ p.bg-warning {
 button.btn-danger {
     margin-left: auto;
 }
+#source {
+    margin-bottom: 0;
+}
 footer{
-    margin-top: 200px;
     padding: 10px 0;
 }
 h1 {

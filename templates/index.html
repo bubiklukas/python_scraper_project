@@ -21,6 +21,7 @@
         <hr>
         {% for title in titles %}
         <h3><a href="{{links[loop.index - 1]}}" target="_blank">{{title}}</a></h3>
+        <hr>
         {% endfor %}
         <div class="flex1">
             <form action="/botrun/" method="POST">
@@ -30,8 +31,13 @@
                 <button onclick="hideLoading()"class="btn btn-danger" id="hide">Delete news</button>
             </form>
         </div>
-        <p id="loading" class="bg-warning">Loading news, do not click the button again.</p>
-        <footer class="fixed-bottom text-center p20 text-white bg-dark">Made by Lukas Bubik</footer>
+        <p id="loading" class="bg-light">Loading news, do not click the button again.</p>
+        <div class="fixed-bottom text-center p20 text-white bg-dark">
+            <div class="container flex1 align-items-center">
+                <p id="source">Source: <a href="https://www.idnes.cz/">https://www.idnes.cz/</a></p>
+                <footer class=>Made by Lukas Bubik</footer>
+            </div>
+        </div>
     </div>
 </body>
 </html>
